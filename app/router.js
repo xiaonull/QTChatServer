@@ -4,6 +4,6 @@ module.exports = app => {
 
 	const { router, controller, io } = app;
 
-	io.of('/').route('sendMes', io.controller.chat.mesForward);
+	io.of('/').route('sendChatMes', io.controller.chat.mesForward);
 
 };

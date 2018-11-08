@@ -9,14 +9,15 @@ class ChatController extends Controller {
 		const message = ctx.args[0];
 		try {
 			// 根据 message.to 找到该用户的 socket
-			await ctx.socket.to(message.to).emit('receiveMes', message.mes);
-			ctx.socket.emit('receiveMes', {
+			console.log('mesForward: ' + message.to)
+			await ctx.socket.to(message.to).emit('receiveChatMes', message);
+			ctx.socket.emit('receiveChatMes', {
 				status_code: 200,
 				message: '发送成功',
 				data: {}
 			});
 		}catch(e) {
-			ctx.socket.emit('receiveMes', {
+			ctx.socket.emit('receiveChatMes', {
 				status_code: 500,
 				message: '发送失败',
 				data: {}
